@@ -15,6 +15,10 @@ float fast_inv_sqrt(float n) {
   return conv.f;
 }
 
+int sign(int n) {
+  return n < 0 ? -1 : 1;
+}
+
 float dot3f(Vec3f a, Vec3f b) {
   return a.x * b.x + a.y * b.y + a.z * b.z;
 }
@@ -27,10 +31,30 @@ Vec3f sub3f(Vec3f a, Vec3f b) {
   return (Vec3f){ a.x - b.x, a.y - b.y, a.z - b.z };
 }
 
+Vec3f mult_color3f(Vec3f a, Vec3f b) {
+  return (Vec3f){ a.x * b.x / 255, a.y * b.y / 255, a.z * b.z / 255 };
+}
+
 Vec3f scale3f(Vec3f v, float f) {
   return (Vec3f){ v.x * f, v.y * f, v.z * f };
 }
 
 Vec3f normalize3f(Vec3f v) {
   return scale3f(v, fast_inv_sqrt(dot3f(v, v)));
+}
+
+Vec3c add3c(Vec3c a, Vec3c b) {
+  return (Vec3c){ a.x + b.x, a.y + b.y, a.z + b.z };
+}
+
+Vec3c to3c(Vec3f v) {
+  return (Vec3c){ (unsigned char)v.x, (unsigned char)v.y, (unsigned char)v.z };
+}
+
+Vec3c mult_color3c(Vec3c a, Vec3c b) {
+  return (Vec3c){ a.x * (float)b.x / 255, a.y * (float)b.y / 255, a.z * (float)b.z / 255 };
+}
+
+Vec3c scale3c(Vec3c v, float f) {
+  return (Vec3c){ v.x * f, v.y * f, v.z * f };
 }

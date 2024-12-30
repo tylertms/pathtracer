@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -I src
+CFLAGS = -Wall -I src -O3
 # CFLAGS = -Wall -Wextra -Werror -I src
 LIBS = -lSDL2
 

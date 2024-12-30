@@ -1,12 +1,9 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
+
 #include "vmath.h"
-
 #include "render.h"
-
-#define TITLE "raytracer"
-#define WINDOW_WIDTH 320
-#define WINDOW_HEIGHT 240
+#include "config.h"
 
 int main() {
   // init all the SDL stuff

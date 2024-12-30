@@ -1,22 +1,23 @@
 #pragma once
-#include <stdint.h>
 
 typedef struct {
   float x, y, z;
 } Vec3f;
 
 typedef struct {
-  uint8_t x, y, z;
+  unsigned char x, y, z;
 } Vec3c;
 
 typedef struct {
-  Vec3c color;
+  Vec3f color;
+  Vec3f emission_color;
+  float emission_strength;
 } Material;
 
 typedef struct {
   Vec3f center;
   float radius;
-  Material mtl;
+  Material material;
 } Sphere;
 
 typedef struct {
@@ -29,4 +30,7 @@ typedef struct {
   float dist;
   Vec3f hit_pos;
   Vec3f normal;
+  Material material;
 } Hit;
+
+typedef unsigned int uint;
