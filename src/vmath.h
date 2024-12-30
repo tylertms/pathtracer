@@ -3,7 +3,7 @@
 
 /* ----- GENERAL ----- */
 float fast_inv_sqrt(float n);
-int sign(int n);
+float signf(float n);
 
 /* ----- FLOAT VECTOR ----- */
 float dot3f(Vec3f a, Vec3f b);

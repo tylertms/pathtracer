@@ -7,33 +7,33 @@
 
 void scene_init() {
   Material mtl;;
-  mtl.color = (Vec3f){ 220, 50, 220 };
+  mtl.color = (Vec3f){ 0, 0, 255 };
 
   Sphere s0;
-  s0.center = (Vec3f){ 0, 10, 0 };
+  s0.center = (Vec3f){ 0, 14, 0 };
   s0.radius = 10;
   s0.material = mtl;
 
   mtl.color = (Vec3f){ 255, 255, 255 };
 
   Sphere s1;
-  s1.center = (Vec3f){ 2, -2, 0 };
+  s1.center = (Vec3f){ 2, 2, 0 };
   s1.radius = 2;
   s1.material = mtl;
 
   mtl.color = (Vec3f){ 255, 0, 0 };
 
   Sphere s2;
-  s2.center = (Vec3f){ -1.5, -0.5, -1.5 };
+  s2.center = (Vec3f){ -2, 3.5, -2 };
   s2.radius = 1.5;
   s2.material = mtl;
 
   mtl.color = (Vec3f){ 0, 0, 0 };
   mtl.emission_color = (Vec3f){ 255, 255, 255 };
-  mtl.emission_strength = 10;
+  mtl.emission_strength = 30;
 
   Sphere s3;
-  s3.center = (Vec3f){ -3, 0, 10 };
+  s3.center = (Vec3f){ 6, 0, 10 };
   s3.radius = 8;
   s3.material = mtl;
 

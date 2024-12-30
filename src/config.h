@@ -4,5 +4,5 @@
 #define WINDOW_HEIGHT 240
 
 /* ----- RENDER ----- */
-#define MAX_BOUNCES 10
-#define SAMPLES 10000
+#define MAX_BOUNCES 8
+#define SAMPLES 256

@@ -40,7 +40,8 @@ Vec3f random_direction(uint *input) {
 
 Vec3f random_hemisphere_direction(Vec3f normal, uint *input) {
   Vec3f dir = random_direction(input);
-  return scale3f(dir, sign(dot3f(normal, dir)));
+  float dot = dot3f(normal, dir);
+  return scale3f(dir, signf(dot));
 }
 
 // trace the path of the ray from the camera up to MAX_BOUNCES
@@ -54,6 +55,7 @@ Vec3f trace(Ray ray, uint *rng_state) {
     if (hit.did_hit) {
       ray.origin = hit.hit_pos;
       ray.dir = random_hemisphere_direction(hit.normal, rng_state);
+      //printf("random dir: %f, %f, %f, dot = %f\n", ray.dir.x, ray.dir.y, ray.dir.z, dot3f(hit.normal, ray.dir));
 
       Material mtl = hit.material;
       Vec3f emitted_light = scale3f(mtl.emission_color, mtl.emission_strength);
@@ -75,8 +77,9 @@ Vec3c shader(Ray ray, int x, int y) {
   for (int i = 0; i < SAMPLES; i++) {
     total_light = add3f(total_light, trace(ray, &rng_state));
   }
+  total_light = scale3f(total_light, (float)1.f / SAMPLES);
+  Vec3c color = to3c(total_light);
   
-  Vec3c color = to3c(scale3f(total_light, (float)1 / SAMPLES));
   return color;
 }
 
@@ -86,7 +89,7 @@ void render(SDL_Renderer *renderer, SDL_Window *window) {
   srand(time(NULL));
 
   // TODO: move cam
-  Vec3f cam = {0, 0, -8};
+  Vec3f cam = {0, 4, -20};
 
   // iterate through every pixel
   for (int x = 0; x < WINDOW_WIDTH; x++) {
@@ -96,7 +99,7 @@ void render(SDL_Renderer *renderer, SDL_Window *window) {
 
       float x_adj = ((float)x - WINDOW_WIDTH / 2) / scale;
       float y_adj = ((float)y - WINDOW_HEIGHT / 2) / scale;
-      Vec3f pixel = {x_adj, y_adj, -2};
+      Vec3f pixel = {x_adj, y_adj + 4, -5};
 
       // ray origin is at cam
       // dir is normalized vector to pixel

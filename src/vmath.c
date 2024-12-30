@@ -15,7 +15,7 @@ float fast_inv_sqrt(float n) {
   return conv.f;
 }
 
-int sign(int n) {
+float signf(float n) {
   return n < 0 ? -1 : 1;
 }
 
@@ -39,6 +39,7 @@ Vec3f scale3f(Vec3f v, float f) {
   return (Vec3f){ v.x * f, v.y * f, v.z * f };
 }
 
+
 Vec3f normalize3f(Vec3f v) {
   return scale3f(v, fast_inv_sqrt(dot3f(v, v)));
 }
@@ -48,6 +49,9 @@ Vec3c add3c(Vec3c a, Vec3c b) {
 }
 
 Vec3c to3c(Vec3f v) {
+  if (v.x > 255) v.x = 255;
+  if (v.y > 255) v.y = 255;
+  if (v.z > 255) v.z = 255;
   return (Vec3c){ (unsigned char)v.x, (unsigned char)v.y, (unsigned char)v.z };
 }
 
