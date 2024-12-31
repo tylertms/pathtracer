@@ -5,5 +5,6 @@
 Sphere spheres[NUM_SPHERES];
 
 void scene_init();
-Hit ray_collision(Ray ray);
-Hit ray_intersect_sphere(Ray ray, Sphere sphere);
+void scene_deinit();
+Hit ray_collision(const Ray *ray, int collision_number, int x, int y);
+Hit ray_intersect_sphere(const Ray *ray, const Sphere *sphere);
