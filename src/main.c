@@ -67,7 +67,7 @@ int main() {
       if (!done) {
         done = 1;
         gettimeofday(&stop, NULL);
-        int seconds = (float)((stop.tv_sec - start.tv_sec) * 1000000 + stop.tv_usec - start.tv_usec) / 1000000;
+        float seconds = (float)((stop.tv_sec - start.tv_sec) * 1000000 + stop.tv_usec - start.tv_usec) / 1000000;
         printf("RENDER COMPLETE after %fs\n", seconds);
       }
     }
@@ -80,7 +80,7 @@ shutdown:
 
   free(image);
   scene_deinit();
-  
+
   // deinit SDL stuff
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
